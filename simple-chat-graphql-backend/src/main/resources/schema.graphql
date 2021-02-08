@@ -1,0 +1,51 @@
+type Query {
+    messages: [Message]
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!,
+}
+
+type UserAuth {
+    token: String!,
+    user: User!
+}
+
+type Message {
+    id: ID!,
+    sender: MessageSender!,
+    content: String!
+    timestamp: String!
+}
+
+type MessageSender {
+    id: ID!,
+    username: String!
+}
+
+type Mutation {
+    createUser(userInput: CreateUserInput!): UserAuth
+    login(loginInput: LoginInput!): UserAuth
+    sendMessage(messageInput: CreateMessageInput!) : Message
+}
+
+type Subscription {
+    newMessage: Message!
+}
+
+input LoginInput {
+    email: String!,
+    password: String!
+}
+
+input CreateUserInput {
+    username: String!
+    email: String!
+    password: String!
+}
+
+input CreateMessageInput {
+    content: String!
+}
